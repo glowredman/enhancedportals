@@ -1,0 +1,6 @@
+dependencies {
+    compileOnly "com.github.GTNewHorizons:BuildCraft:7.1.39:api"
+    compileOnly "com.github.GTNewHorizons:OpenComputers:1.10.6-GTNH:api"
+	compileOnly "curse.maven:cofh-lib-220333:2388748"
+    compileOnly "net.bdew.thirdparty:computercraft:1.74.2-mc1.7.10:api"
+}

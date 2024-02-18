@@ -1,0 +1,6 @@
+repositories {
+    maven {
+	    name "bdew maven"
+		url "https://jenkins.bdew.net/maven/"
+	}
+}

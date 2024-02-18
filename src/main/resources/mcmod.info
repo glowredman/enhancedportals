@@ -1,14 +1,21 @@
-[{
-  "modid": "${mod_id}",
-  "name": "EnhancedPortals",
-  "version": "${mod_version}",
-  "mcversion": "${mc_version}",
-  "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1292751",
-  "credits": "KzariusRex, SexyDexyDoo, SyiSeiko",
-  "authorList": [ "Alz454" ],
-  "description": "An advanced technological portal teleportation system",
-  "logoFile": "",
-  "updateUrl": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1292751",
-  "parent": "",
-  "screenshots": [ ]
-}]
+{
+	"modListVersion": 2,
+	"modList": [{
+		"modid": "${modId}",
+		"name": "${modName}",
+		"description": "An advanced technological portal teleportation system",
+		"version": "${modVersion}",
+		"mcversion": "${minecraftVersion}",
+		"url": "https://www.curseforge.com/minecraft/mc-mods/enhanced-portals-3",
+		"updateUrl": "",
+		"authorList": ["Alz454"],
+		"credits": "KzariusRex, SexyDexyDoo, SyiSeiko",
+		"logoFile": "ep_banner.png",
+		"screenshots": [],
+		"parent": "",
+		"requiredMods": [],
+		"dependencies": [],
+		"dependants": [],
+		"useDependencyInformation": false
+	}]
+}
