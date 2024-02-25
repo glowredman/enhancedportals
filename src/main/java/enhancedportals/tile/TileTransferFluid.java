@@ -165,7 +165,7 @@ public class TileTransferFluid extends TileFrameTransfer implements IFluidHandle
     public void packetGuiFill(ByteBuf buffer) {
         if (tank.getFluid() != null) {
             buffer.writeBoolean(false);
-            buffer.writeInt(tank.getFluid().fluidID);
+            buffer.writeInt(tank.getFluid().getFluidID());
             buffer.writeInt(tank.getFluidAmount());
         } else
             buffer.writeBoolean(false);

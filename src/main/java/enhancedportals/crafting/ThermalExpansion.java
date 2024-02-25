@@ -4,11 +4,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import enhancedportals.EnhancedPortals;
 import enhancedportals.block.BlockFrame;
@@ -34,15 +32,15 @@ public class ThermalExpansion {
 
     public static void registerMachineRecipes() {
         // Redstone Interface
-        ThermalExpansionHelper.addTransposerFill(10000, new ItemStack(BlockFrame.instance, 1, 0), new ItemStack(BlockFrame.instance, 1, BlockFrame.REDSTONE_INTERFACE), new FluidStack(FluidRegistry.getFluidID("redstone"), 400), false);
+        ThermalExpansionHelper.addTransposerFill(10000, new ItemStack(BlockFrame.instance, 1, 0), new ItemStack(BlockFrame.instance, 1, BlockFrame.REDSTONE_INTERFACE), FluidRegistry.getFluidStack("redstone", 400), false);
         // Redstone Interface Upgrade
-        ThermalExpansionHelper.addTransposerFill(10000, new ItemStack(ItemBlankUpgrade.instance, 1, 0), new ItemStack(ItemUpgrade.instance, 1, 0), new FluidStack(FluidRegistry.getFluidID("redstone"), 400), false);
+        ThermalExpansionHelper.addTransposerFill(10000, new ItemStack(ItemBlankUpgrade.instance, 1, 0), new ItemStack(ItemUpgrade.instance, 1, 0), FluidRegistry.getFluidStack("redstone", 400), false);
         // Network Interface
-        ThermalExpansionHelper.addTransposerFill(15000, new ItemStack(BlockFrame.instance, 1, 0), new ItemStack(BlockFrame.instance, 1, BlockFrame.NETWORK_INTERFACE), new FluidStack(FluidRegistry.getFluidID("ender"), 250), false);
+        ThermalExpansionHelper.addTransposerFill(15000, new ItemStack(BlockFrame.instance, 1, 0), new ItemStack(BlockFrame.instance, 1, BlockFrame.NETWORK_INTERFACE), FluidRegistry.getFluidStack("ender", 250), false);
         // Network Interface Upgrade
-        ThermalExpansionHelper.addTransposerFill(15000, new ItemStack(ItemBlankUpgrade.instance, 1, 1), new ItemStack(ItemUpgrade.instance, 1, 1), new FluidStack(FluidRegistry.getFluidID("ender"), 250), false);
+        ThermalExpansionHelper.addTransposerFill(15000, new ItemStack(ItemBlankUpgrade.instance, 1, 1), new ItemStack(ItemUpgrade.instance, 1, 1), FluidRegistry.getFluidStack("ender", 250), false);
         // DBS
-        ThermalExpansionHelper.addTransposerFill(15000, new ItemStack(BlockStabilizerEmpty.instance, 1, 0), new ItemStack(BlockStabilizer.instance, 1, 0), new FluidStack(FluidRegistry.getFluidID("ender"), 125), false);
+        ThermalExpansionHelper.addTransposerFill(15000, new ItemStack(BlockStabilizerEmpty.instance, 1, 0), new ItemStack(BlockStabilizer.instance, 1, 0), FluidRegistry.getFluidStack("ender", 125), false);
     }
 
     public static void registerRecipes() {

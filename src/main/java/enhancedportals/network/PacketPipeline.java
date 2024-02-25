@@ -44,7 +44,7 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Packet
         if (clazz == null)
             throw new NullPointerException("No packet registered for discriminator: " + discriminator);
 
-        PacketEP pkt = clazz.newInstance();
+        PacketEP pkt = clazz.getConstructor().newInstance();
         pkt.decodeInto(ctx, payload.slice());
 
         EntityPlayer player;
