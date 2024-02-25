@@ -18,6 +18,7 @@ import cpw.mods.fml.common.Optional.InterfaceList;
 import cpw.mods.fml.common.Optional.Method;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import dan200.computercraft.api.lua.ILuaContext;
+import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import enhancedportals.network.GuiHandler;
@@ -68,21 +69,24 @@ public class TileDialingDevice extends TileFrame implements IPeripheral, SimpleC
     }
 
     @Override
-    public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws Exception {
-        if (method == 0)
-            return comp_Dial(arguments);
-        else if (method == 1)
-            getPortalController().connectionTerminate();
-        else if (method == 2)
-            return comp_DialStored(arguments);
-        else if (method == 3)
-            return comp_GetStoredName(arguments);
-        else if (method == 4)
-            return comp_GetStoredGlyph(arguments);
-        else if (method == 5)
     @Method(modid = "ComputerCraft|API|Peripheral")
+    public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws LuaException, InterruptedException {
+        try {
+            if (method == 0)
+                return comp_Dial(arguments);
+            if (method == 2)
+                return comp_DialStored(arguments);
+            if (method == 3)
+                return comp_GetStoredName(arguments);
+            if (method == 4)
+                return comp_GetStoredGlyph(arguments);
+        } catch (Exception e) {
+            throw new LuaException(e.getMessage());
+        }
+        if (method == 5)
             return new Object[] { glyphList.size() };
-
+        if (method == 1)
+            getPortalController().connectionTerminate();
         return null;
     }
 

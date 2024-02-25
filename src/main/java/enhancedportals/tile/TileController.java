@@ -24,6 +24,7 @@ import cpw.mods.fml.common.Optional.Method;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dan200.computercraft.api.lua.ILuaContext;
+import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import enhancedportals.EnhancedPortals;
@@ -195,26 +196,30 @@ public class TileController extends TileFrame implements IPeripheral, SimpleComp
     }
 
     @Override
-    public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws Exception {
     @Method(modid = "ComputerCraft|API|Peripheral")
+    public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws LuaException, InterruptedException {
         if (method == 0)
             return new Object[] { isPortalActive() };
-        else if (method == 1)
+        if (method == 1)
             return comp_GetUniqueIdentifier();
-        else if (method == 2)
-            return comp_SetUniqueIdentifier(arguments);
-        else if (method == 3)
-            return new Object[] { activeTextureData.getFrameColour() };
-        else if (method == 4)
-            return comp_SetFrameColour(arguments);
-        else if (method == 5)
-            return new Object[] { activeTextureData.getPortalColour() };
-        else if (method == 6)
-            return comp_SetPortalColour(arguments);
-        else if (method == 7)
-            return new Object[] { activeTextureData.getParticleColour() };
-        else if (method == 8)
-            return comp_SetParticleColour(arguments);
+        try {
+            if (method == 2)
+                return comp_SetUniqueIdentifier(arguments);
+            if (method == 3)
+                return new Object[] { activeTextureData.getFrameColour() };
+            if (method == 4)
+                return comp_SetFrameColour(arguments);
+            if (method == 5)
+                return new Object[] { activeTextureData.getPortalColour() };
+            if (method == 6)
+                return comp_SetPortalColour(arguments);
+            if (method == 7)
+                return new Object[] { activeTextureData.getParticleColour() };
+            if (method == 8)
+                return comp_SetParticleColour(arguments);
+        } catch (Exception e) {
+            throw new LuaException(e.getMessage());
+        }
 
         return null;
     }

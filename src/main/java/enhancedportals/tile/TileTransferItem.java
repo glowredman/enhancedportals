@@ -17,6 +17,7 @@ import cpw.mods.fml.common.Optional.InterfaceList;
 import cpw.mods.fml.common.Optional.Method;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import dan200.computercraft.api.lua.ILuaContext;
+import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import enhancedportals.network.GuiHandler;
@@ -52,8 +53,8 @@ public class TileTransferItem extends TileFrameTransfer implements IInventory, I
     }
 
     @Override
-    public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws Exception {
     @Method(modid = "ComputerCraft|API|Peripheral")
+    public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws LuaException, InterruptedException {
         if (method == 0)
             return new Object[] { stack != null ? Item.getIdFromItem(stack.getItem()) : 0 };
         else if (method == 1)

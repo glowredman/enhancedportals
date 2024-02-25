@@ -22,6 +22,7 @@ import cpw.mods.fml.common.Optional.Interface;
 import cpw.mods.fml.common.Optional.InterfaceList;
 import cpw.mods.fml.common.Optional.Method;
 import dan200.computercraft.api.lua.ILuaContext;
+import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import enhancedportals.item.ItemNanobrush;
@@ -68,8 +69,8 @@ public class TileTransferFluid extends TileFrameTransfer implements IFluidHandle
     }
 
     @Override
-    public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws Exception {
     @Method(modid = "ComputerCraft|API|Peripheral")
+    public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws LuaException, InterruptedException {
         if (method == 0)
             return new Object[] { tank.getFluid() != null ? tank.getFluid().getFluid().getName() : "" };
         else if (method == 1)
