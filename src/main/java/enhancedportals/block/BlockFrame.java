@@ -20,11 +20,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.Optional.Interface;
-import cpw.mods.fml.common.Optional.InterfaceList;
 import cpw.mods.fml.common.Optional.Method;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
-import enhancedportals.EnhancedPortals;
 import enhancedportals.network.ClientProxy;
 import enhancedportals.network.CommonProxy;
 import enhancedportals.tile.TileController;
@@ -43,7 +41,7 @@ import enhancedportals.utility.ConnectedTexturesDetailed;
 import enhancedportals.utility.IDismantleable;
 import enhancedportals.utility.ISidedBlockTexture;
 
-@InterfaceList(value = { @Interface(iface = "dan200.computercraft.api.peripheral.IPeripheralProvider", modid = EnhancedPortals.MODID_COMPUTERCRAFT) })
+@Interface(iface = "dan200.computercraft.api.peripheral.IPeripheralProvider", modid = "ComputerCraft|API|Peripheral")
 public class BlockFrame extends BlockContainer implements IDismantleable, IPeripheralProvider {
     public static BlockFrame instance;
     public static ConnectedTexturesDetailed connectedTextures;
@@ -161,7 +159,7 @@ public class BlockFrame extends BlockContainer implements IDismantleable, IPerip
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public IPeripheral getPeripheral(World world, int x, int y, int z, int side) {
         TileEntity t = world.getTileEntity(x, y, z);
 

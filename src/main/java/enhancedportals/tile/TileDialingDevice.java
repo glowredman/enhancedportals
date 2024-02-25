@@ -20,7 +20,6 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
-import enhancedportals.EnhancedPortals;
 import enhancedportals.network.GuiHandler;
 import enhancedportals.portal.GlyphElement;
 import enhancedportals.portal.GlyphIdentifier;
@@ -28,7 +27,9 @@ import enhancedportals.portal.PortalTextureManager;
 import enhancedportals.utility.ComputerUtils;
 import enhancedportals.utility.Localization;
 
-@InterfaceList(value = { @Interface(iface = "dan200.computercraft.api.peripheral.IPeripheral", modid = EnhancedPortals.MODID_COMPUTERCRAFT), @Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = EnhancedPortals.MODID_OPENCOMPUTERS) })
+@InterfaceList(value = {
+        @Interface(iface = "dan200.computercraft.api.peripheral.IPeripheral", modid = "ComputerCraft|API|Peripheral"),
+        @Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "OpenComputersAPI|Network") })
 public class TileDialingDevice extends TileFrame implements IPeripheral, SimpleComponent {
     public ArrayList<GlyphElement> glyphList = new ArrayList<GlyphElement>();
 
@@ -61,13 +62,12 @@ public class TileDialingDevice extends TileFrame implements IPeripheral, SimpleC
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public void attach(IComputerAccess computer) {
 
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
     public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws Exception {
         if (method == 0)
             return comp_Dial(arguments);
@@ -80,6 +80,7 @@ public class TileDialingDevice extends TileFrame implements IPeripheral, SimpleC
         else if (method == 4)
             return comp_GetStoredGlyph(arguments);
         else if (method == 5)
+    @Method(modid = "ComputerCraft|API|Peripheral")
             return new Object[] { glyphList.size() };
 
         return null;
@@ -131,13 +132,13 @@ public class TileDialingDevice extends TileFrame implements IPeripheral, SimpleC
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public void detach(IComputerAccess computer) {
 
     }
 
     @Callback(doc = "function(uid:string):boolean -- Attempts to create a connection to the specified portal. UID must be given as a single string in the format of numbers separated by spaces.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] dial(Context context, Arguments args) throws Exception {
         if (args.count() < 1)
             return null;
@@ -146,25 +147,23 @@ public class TileDialingDevice extends TileFrame implements IPeripheral, SimpleC
     }
 
     @Callback(doc = "function(entry:number):boolean -- Dials the specified entry in the Dialing Device's list.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] dialStored(Context context, Arguments args) throws Exception {
         return comp_DialStored(ComputerUtils.argsToArray(args));
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public boolean equals(IPeripheral other) {
         return other == this;
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
     public String getComponentName() {
         return "ep_dialling_device";
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
     public String[] getMethodNames() {
         return new String[] { "dial", "terminate", "dialStored", "getStoredName", "getStoredGlyph", "getStoredCount" };
     }
@@ -190,25 +189,24 @@ public class TileDialingDevice extends TileFrame implements IPeripheral, SimpleC
     }
 
     @Callback(direct = true, doc = "function():number -- Returns the amount of entries in the Dialing Device's list.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] getStoredCount(Context context, Arguments args) {
         return new Object[] { glyphList.size() };
     }
 
     @Callback(direct = true, doc = "function(entry:number):string -- Returns the UID as a string of the specified entry in the Dialing Device's list.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] getStoredGlyph(Context context, Arguments args) throws Exception {
         return comp_GetStoredGlyph(ComputerUtils.argsToArray(args));
     }
 
     @Callback(direct = true, doc = "function(entry:number):string -- Returns the name of the specified entry in the Dialing Device's list.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] getStoredName(Context context, Arguments args) throws Exception {
         return comp_GetStoredName(ComputerUtils.argsToArray(args));
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
     public String getType() {
         return "ep_dialling_device";
     }
@@ -257,7 +255,7 @@ public class TileDialingDevice extends TileFrame implements IPeripheral, SimpleC
     }
 
     @Callback(doc = "function():boolean -- Terminates any active connection.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Network")
     public Object[] terminate(Context context, Arguments args) {
         getPortalController().connectionTerminate();
         return new Object[] { true };

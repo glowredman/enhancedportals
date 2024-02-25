@@ -19,11 +19,12 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
-import enhancedportals.EnhancedPortals;
 import enhancedportals.network.GuiHandler;
 import enhancedportals.utility.GeneralUtils;
 
-@InterfaceList(value = { @Interface(iface = "dan200.computercraft.api.peripheral.IPeripheral", modid = EnhancedPortals.MODID_COMPUTERCRAFT), @Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = EnhancedPortals.MODID_OPENCOMPUTERS) })
+@InterfaceList(value = {
+        @Interface(iface = "dan200.computercraft.api.peripheral.IPeripheral", modid = "ComputerCraft|API|Peripheral"),
+        @Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "OpenComputersAPI|Network") })
 public class TileTransferItem extends TileFrameTransfer implements IInventory, IPeripheral, SimpleComponent {
     ItemStack stack;
 
@@ -45,14 +46,14 @@ public class TileTransferItem extends TileFrameTransfer implements IInventory, I
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public void attach(IComputerAccess computer) {
 
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
     public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws Exception {
+    @Method(modid = "ComputerCraft|API|Peripheral")
         if (method == 0)
             return new Object[] { stack != null ? Item.getIdFromItem(stack.getItem()) : 0 };
         else if (method == 1)
@@ -88,19 +89,18 @@ public class TileTransferItem extends TileFrameTransfer implements IInventory, I
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public void detach(IComputerAccess computer) {
 
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public boolean equals(IPeripheral other) {
         return other == this;
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
     public String getComponentName() {
         return "ep_transfer_item";
     }
@@ -116,7 +116,6 @@ public class TileTransferItem extends TileFrameTransfer implements IInventory, I
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
     public String[] getMethodNames() {
         return new String[] { "getItemStored", "getAmountStored", "hasStack", "isSending" };
     }
@@ -127,7 +126,7 @@ public class TileTransferItem extends TileFrameTransfer implements IInventory, I
     }
 
     @Callback(direct = true, doc = "function():table -- Returns a description of the item stored in this module.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] getStack(Context context, Arguments args) {
         return new Object[] { stack.copy() };
     }
@@ -143,7 +142,6 @@ public class TileTransferItem extends TileFrameTransfer implements IInventory, I
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
     public String getType() {
         return "ep_transfer_item";
     }
@@ -154,7 +152,7 @@ public class TileTransferItem extends TileFrameTransfer implements IInventory, I
     }
 
     @Callback(direct = true, doc = "function():boolean -- Return whether there is an item stored in this module.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] hasStack(Context context, Arguments args) {
         return new Object[] { stack != null };
     }
@@ -165,7 +163,7 @@ public class TileTransferItem extends TileFrameTransfer implements IInventory, I
     }
 
     @Callback(direct = true, doc = "function():boolean -- Returns true if the module is set to send items.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] isSending(Context context, Arguments args) {
         return new Object[] { isSending };
     }

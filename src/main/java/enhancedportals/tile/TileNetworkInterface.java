@@ -14,13 +14,14 @@ import cpw.mods.fml.common.Optional.Method;
 import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
-import enhancedportals.EnhancedPortals;
 import enhancedportals.item.ItemNanobrush;
 import enhancedportals.network.GuiHandler;
 import enhancedportals.utility.GeneralUtils;
 import enhancedportals.utility.Localization;
 
-@InterfaceList(value = { @Interface(iface = "dan200.computercraft.api.peripheral.IPeripheral", modid = EnhancedPortals.MODID_COMPUTERCRAFT), @Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = EnhancedPortals.MODID_OPENCOMPUTERS) })
+@InterfaceList(value = {
+        @Interface(iface = "dan200.computercraft.api.peripheral.IPeripheral", modid = "ComputerCraft|API|Peripheral"),
+        @Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "OpenComputersAPI|Network") })
 public class TileNetworkInterface extends TileFrame implements IPeripheral, SimpleComponent {
     @Override
     public boolean activate(EntityPlayer player, ItemStack stack) {
@@ -50,14 +51,14 @@ public class TileNetworkInterface extends TileFrame implements IPeripheral, Simp
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public void attach(IComputerAccess computer) {
 
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
     public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws Exception {
+    @Method(modid = "ComputerCraft|API|Peripheral")
         if (method == 0)
             getPortalController().connectionDial();
         else if (method == 1)
@@ -72,38 +73,35 @@ public class TileNetworkInterface extends TileFrame implements IPeripheral, Simp
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public void detach(IComputerAccess computer) {
 
     }
 
     @Callback(doc = "function():boolean -- Attempts to create a connection to the next portal in the network.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] dial(Context context, Arguments args) {
         getPortalController().connectionDial();
         return new Object[] { true };
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
+    @Method(modid = "ComputerCraft|API|Peripheral")
     public boolean equals(IPeripheral other) {
         return other == this;
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
     public String getComponentName() {
         return "ep_interface_network";
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
     public String[] getMethodNames() {
         return new String[] { "dial", "terminate" };
     }
 
     @Override
-    @Method(modid = EnhancedPortals.MODID_COMPUTERCRAFT)
     public String getType() {
         return "ep_interface_network";
     }
@@ -114,7 +112,7 @@ public class TileNetworkInterface extends TileFrame implements IPeripheral, Simp
     }
 
     @Callback(doc = "function():boolean -- Terminates any active connection.")
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public Object[] terminate(Context context, Arguments args) {
         getPortalController().connectionTerminate();
         return new Object[] { true };

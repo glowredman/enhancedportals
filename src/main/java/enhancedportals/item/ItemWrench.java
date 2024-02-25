@@ -8,9 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import buildcraft.api.tools.IToolWrench;
+import cpw.mods.fml.common.Optional.Interface;
 import enhancedportals.network.CommonProxy;
 import enhancedportals.utility.IDismantleable;
 
+@Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraftAPI|tools")
 public class ItemWrench extends Item implements IToolWrench {
     public static ItemWrench instance;
 
@@ -59,7 +61,5 @@ public class ItemWrench extends Item implements IToolWrench {
     }
 
     @Override
-    public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
-
-    }
+    public void wrenchUsed(EntityPlayer player, int x, int y, int z) {}
 }

@@ -37,9 +37,7 @@ public class EnhancedPortals {
                                MOD_VERSION = "3.0.12",
                                MOD_DEPENDENCIES = "after:ThermalExpansion",
                                UPDATE_URL = "https://raw.githubusercontent.com/enhancedportals/enhancedportals/master/docs/VERSION";
-    public static final String MODID_OPENCOMPUTERS = "OpenComputers",
-                               MODID_COMPUTERCRAFT = "ComputerCraft",
-                               MODID_THERMALEXPANSION = "ThermalExpansion";
+    public static final String MODID_THERMALEXPANSION = "ThermalExpansion";
     public static final PacketPipeline packetPipeline = new PacketPipeline();
 
     @Instance(MOD_ID)
@@ -63,7 +61,7 @@ public class EnhancedPortals {
 
     /** Taken from the CC-API, allowing for use it if it's available, instead of shipping it/requiring it **/
     void initializeComputerCraft() {
-        if (!Loader.isModLoaded(MODID_COMPUTERCRAFT))
+        if (!Loader.isModLoaded("ComputerCraft"))
             return;
 
         try {

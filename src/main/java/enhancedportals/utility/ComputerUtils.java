@@ -2,11 +2,10 @@ package enhancedportals.utility;
 
 import li.cil.oc.api.machine.Arguments;
 import cpw.mods.fml.common.Optional.Method;
-import enhancedportals.EnhancedPortals;
 import enhancedportals.portal.GlyphIdentifier;
 
 public class ComputerUtils {
-    @Method(modid = EnhancedPortals.MODID_OPENCOMPUTERS)
+    @Method(modid = "OpenComputersAPI|Machine")
     public static Object[] argsToArray(Arguments args) {
         Object[] data = new Object[args.count()];
 
