@@ -56,7 +56,6 @@ public class ElementScrollDiallingDevice extends BaseElement {
             if (scrollAmount + i >= dial.glyphList.size())
                 break;
 
-            GlyphElement e = dial.glyphList.get(scrollAmount + i);
             int entryOffset = i * entryHeight;
             boolean mouseOverEntry = y >= posY + offsetY + entryOffset && y <= posY + offsetY + entryOffset + 20, mouseOverMain = mouseOverEntry && x >= posX + offsetX && x < posX + offsetX + sizeMButton, mouseOverSmall = mouseOverEntry && x >= posX + offsetX + sizeMButton + buttonSpacing && x < posX + offsetX + sizeMButton + buttonSpacing + sizeSButton;
 

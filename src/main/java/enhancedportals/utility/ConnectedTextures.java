@@ -60,7 +60,6 @@ public class ConnectedTextures {
 
     public IIcon getIconForSide(IBlockAccess blockAccess, int x, int y, int z, int side) {
         boolean[] connectingBlock = new boolean[4];
-        int index = 0;
 
         if (side == 0 || side == 1) {
             connectingBlock[0] = canConnectTo(blockAccess, x - 1, y, z);

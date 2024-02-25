@@ -118,7 +118,6 @@ public class GuiTextureParticle extends BaseGui {
         itemRenderer.renderWithColor = false;
         ItemStack frame = new ItemStack(BlockFrame.instance, 0, 0), portal = new ItemStack(BlockPortal.instance, 0, 0);
         Color frameColour = new Color(getPTM().getFrameColour()), portalColour = new Color(getPTM().getPortalColour());
-        int particleType = 0;
 
         if (getPTM() != null) {
             frameColour = new Color(getPTM().getFrameColour());
