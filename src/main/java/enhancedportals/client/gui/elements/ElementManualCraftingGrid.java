@@ -52,7 +52,7 @@ public class ElementManualCraftingGrid extends BaseElement {
         if (items == null)
             return;
 
-        List l = null;
+        List<String> l = null;
         int x = parent.getMouseX() + parent.getGuiLeft() - posX, y = parent.getMouseY() + parent.getGuiTop() - posY;
 
         for (int i = 0; i < 9; i++) {

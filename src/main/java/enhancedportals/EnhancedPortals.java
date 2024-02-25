@@ -65,7 +65,7 @@ public class EnhancedPortals {
             return;
 
         try {
-            Class computerCraft = Class.forName("dan200.computercraft.ComputerCraft");
+            Class<?> computerCraft = Class.forName("dan200.computercraft.ComputerCraft");
             Method computerCraft_registerPeripheralProvider = computerCraft.getMethod("registerPeripheralProvider", new Class[] { Class.forName("dan200.computercraft.api.peripheral.IPeripheralProvider") });
             computerCraft_registerPeripheralProvider.invoke(null, BlockFrame.instance);
         } catch (Exception e) {

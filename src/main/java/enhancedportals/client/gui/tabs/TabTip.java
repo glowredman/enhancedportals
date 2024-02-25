@@ -12,7 +12,7 @@ public class TabTip extends BaseTab {
         super(gui, 0);
         name = "tab." + n;
         tip = Localization.get("tab." + n + ".info").replace("<NL>", "\n").replaceAll("<([^<]*)>", "\u00A7$1");
-        List l = gui.getFontRenderer().listFormattedStringToWidth(tip, maxWidth - 14);
+        List<String> l = gui.getFontRenderer().listFormattedStringToWidth(tip, maxWidth - 14);
         maxHeight = l.size() * gui.getFontRenderer().FONT_HEIGHT + 25;
         backgroundColor = 0x33AA00;
     }

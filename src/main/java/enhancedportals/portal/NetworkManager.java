@@ -3,7 +3,6 @@ package enhancedportals.portal;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -184,13 +183,11 @@ public class NetworkManager {
         if (!makeFiles())
             return;
 
-        Type type = new TypeToken<HashMap<String, DimensionCoordinates>>() {
-        }.getType();
         Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
         String portalData = FileUtils.readFileToString(portalFile), networkData = FileUtils.readFileToString(networkFile);
 
-        portalCoordinates = gson.fromJson(portalData, type);
-        portalNetworks = gson.fromJson(networkData, portalNetworks.getClass());
+        portalCoordinates = gson.fromJson(portalData, new TypeToken<HashMap<String, DimensionCoordinates>>() {}.getType());
+        portalNetworks = gson.fromJson(networkData, new TypeToken<HashMap<String, String>>() {}.getType());
 
         if (portalCoordinates == null)
             portalCoordinates = new HashMap<String, DimensionCoordinates>();
