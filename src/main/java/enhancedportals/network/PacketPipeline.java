@@ -7,7 +7,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -100,17 +99,13 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Packet
             return;
 
         isPostInitialised = true;
-        Collections.sort(packets, new Comparator<Class<? extends PacketEP>>() {
-
-            @Override
-            public int compare(Class<? extends PacketEP> clazz1, Class<? extends PacketEP> clazz2) {
+        Collections.sort(packets, (clazz1, clazz2) -> {
                 int com = String.CASE_INSENSITIVE_ORDER.compare(clazz1.getCanonicalName(), clazz2.getCanonicalName());
                 if (com == 0)
-                    com = clazz1.getCanonicalName().compareTo(clazz2.getCanonicalName());
+                    return clazz1.getCanonicalName().compareTo(clazz2.getCanonicalName());
 
                 return com;
-            }
-        });
+            });
     }
 
     /**

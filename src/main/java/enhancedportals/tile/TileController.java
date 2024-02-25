@@ -899,7 +899,7 @@ public class TileController extends TileFrame implements IPeripheral, SimpleComp
         if (stabilizer == null || !(stabilizer.getTileEntity() instanceof TileStabilizerMain)) {
             ItemLocationCard.clearDBSLocation(stack);
             throw new PortalException("voidLinkCard");
-        } else if (!stabilizer.equals(getDimensionalBridgeStabilizer())) {
+        } else if (!stabilizer.equals(getDimensionalBridgeStabilizer().getDimensionCoordinates())) {
             if (!player.capabilities.isCreativeMode) {
                 stack.stackSize--;
 

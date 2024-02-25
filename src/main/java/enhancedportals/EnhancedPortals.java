@@ -27,6 +27,7 @@ import cpw.mods.fml.relauncher.Side;
 import enhancedportals.block.BlockFrame;
 import enhancedportals.network.CommonProxy;
 import enhancedportals.network.GuiHandler;
+import enhancedportals.network.LogOnHandler;
 import enhancedportals.network.PacketPipeline;
 import enhancedportals.portal.NetworkManager;
 import enhancedportals.utility.GeneralUtils;
@@ -35,9 +36,9 @@ import enhancedportals.utility.GeneralUtils;
 public class EnhancedPortals {
     public static final String MOD_NAME = "EnhancedPortals",
                                MOD_ID = "enhancedportals",
-                               MOD_VERSION = "3.0.12",
+                               MOD_VERSION = Tags.VERSION,
                                MOD_DEPENDENCIES = "after:ThermalExpansion",
-                               UPDATE_URL = "https://raw.githubusercontent.com/enhancedportals/enhancedportals/master/docs/VERSION";
+                               UPDATE_URL = "https://raw.githubusercontent.com/glowredman/enhancedportals/master/docs/VERSION";
     public static final String MODID_THERMALEXPANSION = "ThermalExpansion";
     public static final PacketPipeline packetPipeline = new PacketPipeline();
 
@@ -81,7 +82,7 @@ public class EnhancedPortals {
         proxy.setupCrafting();
         
         if (event.getSide() == Side.CLIENT)
-            FMLCommonHandler.instance().bus().register(new enhancedportals.network.LogOnHandler());
+            FMLCommonHandler.instance().bus().register(new LogOnHandler());
     }
 
     @EventHandler

@@ -7,6 +7,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import cofh.api.modhelpers.ThermalExpansionHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import enhancedportals.EnhancedPortals;
 import enhancedportals.block.BlockFrame;
