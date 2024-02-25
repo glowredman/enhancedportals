@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 import enhancedportals.utility.IPortalModule;
 
 public class SlotPortalModule extends Slot {
-    public SlotPortalModule(IInventory par1iInventory, int par2, int par3, int par4) {
-        super(par1iInventory, par2, par3, par4);
+    public SlotPortalModule(IInventory inventory, int slotIndex, int xDisplayPosition, int yDisplayPosition) {
+        super(inventory, slotIndex, xDisplayPosition, yDisplayPosition);
     }
 
     @Override

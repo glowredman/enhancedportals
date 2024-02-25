@@ -96,14 +96,14 @@ public class GuiTextureParticle extends BaseGui {
     }
 
     @Override
-    protected void mouseMovedOrUp(int par1, int par2, int par3) {
-        super.mouseMovedOrUp(par1, par2, par3);
+    protected void mouseMovedOrUp(int mouseX, int mouseY, int state) {
+        super.mouseMovedOrUp(mouseX, mouseY, state);
 
-        if (par3 == 0)
+        if (state == 0)
             for (Object o : buttonList)
                 if (o instanceof GuiBetterSlider) {
                     GuiBetterSlider slider = (GuiBetterSlider) o;
-                    slider.mouseReleased(par1, par2);
+                    slider.mouseReleased(mouseX, mouseY);
                 }
     }
 
@@ -114,7 +114,7 @@ public class GuiTextureParticle extends BaseGui {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         itemRenderer.renderWithColor = false;
         ItemStack frame = new ItemStack(BlockFrame.instance, 0, 0), portal = new ItemStack(BlockPortal.instance, 0, 0);
         Color frameColour = new Color(getPTM().getFrameColour()), portalColour = new Color(getPTM().getPortalColour());
@@ -145,7 +145,7 @@ public class GuiTextureParticle extends BaseGui {
             drawItemStack(portal, 30, containerSize - 16);
 
         GL11.glColor3f(1f, 1f, 1f);
-        super.drawGuiContainerForegroundLayer(par1, par2);
+        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 
     public PortalTextureManager getPTM() {

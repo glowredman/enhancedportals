@@ -50,8 +50,8 @@ public class GuiDialingManual extends BaseGui {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-        super.drawGuiContainerForegroundLayer(par1, par2);
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 
         getFontRenderer().drawString(Localization.get("gui.uniqueIdentifier"), 7, 18, 0x404040);
         getFontRenderer().drawString(Localization.get("gui.glyphs"), 7, 50, 0x404040);

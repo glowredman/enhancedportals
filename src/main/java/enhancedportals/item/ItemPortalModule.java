@@ -48,9 +48,8 @@ public class ItemPortalModule extends Item implements IPortalModule {
         setHasSubtypes(true);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advancedTooltips) {
         list.add("Portal Module");
 
         if (stack.getItemDamage() == PortalModules.FACING.ordinal()) {
@@ -109,9 +108,8 @@ public class ItemPortalModule extends Item implements IPortalModule {
         return EnumRarity.common;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void getSubItems(Item item, CreativeTabs creativeTab, List list) {
+    public void getSubItems(Item item, CreativeTabs creativeTab, List<ItemStack> list) {
         for (int i = 0; i < PortalModules.values().length; i++)
             list.add(new ItemStack(item, 1, i));
     }

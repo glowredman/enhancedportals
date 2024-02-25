@@ -7,8 +7,8 @@ import enhancedportals.item.ItemLocationCard;
 import enhancedportals.utility.GeneralUtils;
 
 public class SlotDBS extends Slot {
-    public SlotDBS(IInventory par1iInventory, int par2, int par3, int par4) {
-        super(par1iInventory, par2, par3, par4);
+    public SlotDBS(IInventory inventory, int slotIndex, int xDisplayPosition, int yDisplayPosition) {
+        super(inventory, slotIndex, xDisplayPosition, yDisplayPosition);
     }
 
     @Override

@@ -52,12 +52,12 @@ public abstract class BaseGui extends GuiContainer {
     }
 
     @Override
-    protected void keyTyped(char par1, int par2) {
+    protected void keyTyped(char typedChar, int keyCode) {
         for (BaseElement e : elements)
-            if (e.keyPressed(par2, par1))
+            if (e.keyPressed(keyCode, typedChar))
                 return;
 
-        super.keyTyped(par1, par2);
+        super.keyTyped(typedChar, keyCode);
     }
 
     public BaseGui(BaseContainer container, int cSize) {
@@ -188,12 +188,12 @@ public abstract class BaseGui extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         drawBackgroundTexture();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        mouseX = i - guiLeft;
-        mouseY = j - guiTop;
+        this.mouseX = mouseX - guiLeft;
+        this.mouseY = mouseY - guiTop;
 
         for (BaseElement element : elements)
             if (element.isVisible()) {
@@ -246,11 +246,11 @@ public abstract class BaseGui extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         if (name != null)
             getFontRenderer().drawString(Localization.get(name), (xSize - mc.fontRenderer.getStringWidth(Localization.get(name))) / 2, 6, 0x404040);
 
-        BaseElement element = getElementAtPosition(mouseX, mouseY);
+        BaseElement element = getElementAtPosition(this.mouseX, this.mouseY);
 
         if (element != null && !element.isDisabled()) {
             List<String> list = new ArrayList<String>();
@@ -262,21 +262,21 @@ public abstract class BaseGui extends GuiContainer {
                 if (needsOffset)
                     list.remove(0);
 
-                drawHoveringText(list, mouseX + (needsOffset ? getGuiLeft() : 0), mouseY + (needsOffset ? getGuiTop() : 0), getFontRenderer());
+                drawHoveringText(list, this.mouseX + (needsOffset ? getGuiLeft() : 0), this.mouseY + (needsOffset ? getGuiTop() : 0), getFontRenderer());
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
                 GL11.glDisable(GL11.GL_LIGHTING);
                 return;
             }
         }
 
-        BaseTab tab = getTabAtPosition(mouseX, mouseY);
+        BaseTab tab = getTabAtPosition(this.mouseX, this.mouseY);
 
         if (tab != null) {
             List<String> list = new ArrayList<String>();
             tab.addTooltip(list);
 
             if (!list.isEmpty()) {
-                drawHoveringText(list, mouseX, mouseY, getFontRenderer());
+                drawHoveringText(list, this.mouseX, this.mouseY, getFontRenderer());
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
                 GL11.glDisable(GL11.GL_LIGHTING);
                 return;

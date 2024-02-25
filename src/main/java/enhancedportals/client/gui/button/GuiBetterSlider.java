@@ -24,10 +24,10 @@ public class GuiBetterSlider extends GuiButton {
      * Fired when the mouse button is dragged. Equivalent of MouseListener.mouseDragged(MouseEvent e).
      */
     @Override
-    protected void mouseDragged(Minecraft par1Minecraft, int par2, int par3) {
+    protected void mouseDragged(Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             if (dragging) {
-                sliderValue = (float) (par2 - (xPosition + 4)) / (float) (width - 8);
+                sliderValue = (float) (mouseX - (xPosition + 4)) / (float) (width - 8);
 
                 if (sliderValue < 0.0F)
                     sliderValue = 0.0F;
@@ -46,9 +46,9 @@ public class GuiBetterSlider extends GuiButton {
      * Returns true if the mouse has been pressed on this control. Equivalent of MouseListener.mousePressed(MouseEvent e).
      */
     @Override
-    public boolean mousePressed(Minecraft par1Minecraft, int par2, int par3) {
-        if (super.mousePressed(par1Minecraft, par2, par3)) {
-            sliderValue = (float) (par2 - (xPosition + 4)) / (float) (width - 8);
+    public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
+        if (super.mousePressed(mc, mouseX, mouseY)) {
+            sliderValue = (float) (mouseX - (xPosition + 4)) / (float) (width - 8);
 
             if (sliderValue < 0.0F)
                 sliderValue = 0.0F;
@@ -66,26 +66,26 @@ public class GuiBetterSlider extends GuiButton {
      * Fired when the mouse button is released. Equivalent of MouseListener.mouseReleased(MouseEvent e).
      */
     @Override
-    public void mouseReleased(int par1, int par2) {
+    public void mouseReleased(int mouseX, int mouseY) {
         dragging = false;
     }
 
     @Override
-    public void drawButton(Minecraft par1Minecraft, int par2, int par3) {
+    public void drawButton(Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
-            FontRenderer fontrenderer = par1Minecraft.fontRenderer;
-            par1Minecraft.getTextureManager().bindTexture(buttonTextures);
+            FontRenderer fontrenderer = mc.fontRenderer;
+            mc.getTextureManager().bindTexture(buttonTextures);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            field_146123_n = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
+            field_146123_n = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
             drawTexturedModalRect(xPosition, yPosition, 0, 46, width / 2, height);
             drawTexturedModalRect(xPosition + width / 2, yPosition, 199 - width / 2, 46, 1 + width / 2, height);
-            mouseDragged(par1Minecraft, par2, par3);
-            int l = 14737632;
+            mouseDragged(mc, mouseX, mouseY);
+            int l = 0xE0E0E0;
 
             if (!enabled)
-                l = -6250336;
+                l = 0xFFA0A0A0;
             else if (field_146123_n)
-                l = 16777120;
+                l = 0xFFFFA0;
 
             drawCenteredString(fontrenderer, displayString, xPosition + width / 2, yPosition + (height - 8) / 2, l);
         }

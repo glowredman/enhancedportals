@@ -187,7 +187,7 @@ public class BlockFrame extends BlockContainer implements IDismantleable, IPerip
     }
 
     @Override
-    public boolean isBlockSolid(IBlockAccess p_149747_1_, int p_149747_2_, int p_149747_3_, int p_149747_4_, int p_149747_5_) {
+    public boolean isBlockSolid(IBlockAccess worldIn, int x, int y, int z, int side) {
         return false;
     }
 

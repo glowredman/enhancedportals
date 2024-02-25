@@ -24,7 +24,7 @@ public class ItemManual extends Item {
     }
 
     @Override
-    public IIcon getIconFromDamage(int par1) {
+    public IIcon getIconFromDamage(int meta) {
         return texture;
     }
 

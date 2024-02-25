@@ -18,20 +18,18 @@ public class ItemFrame extends ItemBlockWithMetadata {
         super(b, BlockFrame.instance);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advancedTooltips) {
         int damage = stack.getItemDamage();
 
         if (damage > 0)
             list.add(Localization.get("block.portalFramePart"));
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < BlockFrame.FRAME_TYPES; i++)
-            list.add(new ItemStack(par1, 1, i));
+            list.add(new ItemStack(item, 1, i));
     }
 
     @Override

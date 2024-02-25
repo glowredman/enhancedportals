@@ -59,16 +59,16 @@ public class GuiDialingEdit extends GuiDialingAdd {
     }
 
     @Override
-    protected void keyTyped(char par1, int par2) {
+    protected void keyTyped(char typedChar, int keyCode) {
         if (receivedData)
-            super.keyTyped(par1, par2);
-        else if (par2 == 1 || par2 == mc.gameSettings.keyBindInventory.getKeyCode())
+            super.keyTyped(typedChar, keyCode);
+        else if (keyCode == 1 || keyCode == mc.gameSettings.keyBindInventory.getKeyCode())
             mc.thePlayer.closeScreen();
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-        super.drawGuiContainerForegroundLayer(par1, par2);
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 
         if (!receivedData) // Just in case the users connection is very slow
         {
@@ -77,8 +77,8 @@ public class GuiDialingEdit extends GuiDialingAdd {
             getFontRenderer().drawSplitString(s, xSize / 2 - getFontRenderer().getStringWidth(s) / 2, ySize / 2 - getFontRenderer().FONT_HEIGHT / 2, xSize, 0xFF0000);
         }
 
-        if (par1 >= guiLeft + 7 && par1 <= guiLeft + 168 && par2 >= guiTop + 52 && par2 < guiTop + 70)
-            drawHoveringText(Arrays.asList(new String[] { Localization.get("gui.clickToModify") }), par1 - guiLeft, par2 - guiTop, getFontRenderer());
+        if (mouseX >= guiLeft + 7 && mouseX <= guiLeft + 168 && mouseY >= guiTop + 52 && mouseY < guiTop + 70)
+            drawHoveringText(Arrays.asList(new String[] { Localization.get("gui.clickToModify") }), mouseX - guiLeft, mouseY - guiTop, getFontRenderer());
     }
 
     @Override

@@ -52,9 +52,9 @@ public class GuiDialingAdd extends BaseGui {
     }
 
     @Override
-    protected void keyTyped(char par1, int par2) {
-        if (!text.textboxKeyTyped(par1, par2))
-            super.keyTyped(par1, par2);
+    protected void keyTyped(char typedChar, int keyCode) {
+        if (!text.textboxKeyTyped(typedChar, keyCode))
+            super.keyTyped(typedChar, keyCode);
     }
 
     @Override
@@ -99,14 +99,14 @@ public class GuiDialingAdd extends BaseGui {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-        super.drawGuiContainerBackgroundLayer(f, i, j);
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+        super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
         text.drawTextBox();
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-        super.drawGuiContainerForegroundLayer(par1, par2);
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         getFontRenderer().drawString(Localization.get("gui.uniqueIdentifier"), 7, 43, 0x404040);
         getFontRenderer().drawString(Localization.get("gui.textures"), 7, 73, 0x404040);
 

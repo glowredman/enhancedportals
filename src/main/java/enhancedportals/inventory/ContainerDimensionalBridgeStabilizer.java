@@ -76,12 +76,12 @@ public class ContainerDimensionalBridgeStabilizer extends BaseContainer {
     }
 
     @Override
-    public void updateProgressBar(int par1, int par2) {
-        if (par1 == 2)
-            stabilizer.intActiveConnections = par2;
-        else if (par1 == 3)
-            stabilizer.instability = par2;
-        else if (par1 == 4)
-            stabilizer.powerState = par2;
+    public void updateProgressBar(int id, int val) {
+        if (id == 2)
+            stabilizer.intActiveConnections = val;
+        else if (id == 3)
+            stabilizer.instability = val;
+        else if (id == 4)
+            stabilizer.powerState = val;
     }
 }

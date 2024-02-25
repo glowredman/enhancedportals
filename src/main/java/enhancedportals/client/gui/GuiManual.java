@@ -206,7 +206,7 @@ public class GuiManual extends BaseGui {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         hideItemLinks();
 
         // Check to see where we are in the Manual:
@@ -298,7 +298,7 @@ public class GuiManual extends BaseGui {
             GL11.glDisable(GL11.GL_ALPHA_TEST);
         }
         
-        super.drawGuiContainerForegroundLayer(par1, par2);
+        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 
     protected void hideCraftingTable() {

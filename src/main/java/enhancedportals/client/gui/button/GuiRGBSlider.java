@@ -21,10 +21,10 @@ public class GuiRGBSlider extends GuiBetterSlider {
     }
 
     @Override
-    protected void mouseDragged(Minecraft par1Minecraft, int par2, int par3) {
+    protected void mouseDragged(Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             if (dragging) {
-                sliderValue = (float) (par2 - (xPosition + 4)) / (float) (width - 8);
+                sliderValue = (float) (mouseX - (xPosition + 4)) / (float) (width - 8);
 
                 if (sliderValue < 0.0F)
                     sliderValue = 0.0F;
@@ -41,9 +41,9 @@ public class GuiRGBSlider extends GuiBetterSlider {
     }
 
     @Override
-    public boolean mousePressed(Minecraft par1Minecraft, int par2, int par3) {
-        if (super.mousePressed(par1Minecraft, par2, par3)) {
-            sliderValue = (float) (par2 - (xPosition + 4)) / (float) (width - 8);
+    public boolean mousePressed(Minecraft mc, int mouseX, int mouseY) {
+        if (super.mousePressed(mc, mouseX, mouseY)) {
+            sliderValue = (float) (mouseX - (xPosition + 4)) / (float) (width - 8);
 
             if (sliderValue < 0.0F)
                 sliderValue = 0.0F;

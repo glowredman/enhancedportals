@@ -18,20 +18,19 @@ public class ItemStabilizer extends ItemBlock {
         setHasSubtypes(true);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4) {
         list.add(Localization.get("block.multiblockStructure"));
         list.add(EnumChatFormatting.DARK_GRAY + Localization.get("block.dbsSize"));
     }
 
     @Override
-    public IIcon getIconFromDamage(int par1) {
+    public IIcon getIconFromDamage(int meta) {
         return BlockStabilizer.instance.getBlockTextureFromSide(0);
     }
 
     @Override
-    public int getMetadata(int par1) {
-        return par1;
+    public int getMetadata(int meta) {
+        return meta;
     }
 }

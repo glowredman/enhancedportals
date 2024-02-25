@@ -50,7 +50,7 @@ public class GuiTextureFrame extends BaseGui implements IFakeSlotHandler {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         String s = Localization.get("gui.facade");
         getFontRenderer().drawString(s, xSize - 30 - getFontRenderer().getStringWidth(s), containerSize - 12, 0x404040);
 
@@ -87,7 +87,7 @@ public class GuiTextureFrame extends BaseGui implements IFakeSlotHandler {
         drawTexturedModalRect(30, containerSize - 16, particleFrames[particleFrame] % 16 * 16, particleFrames[particleFrame] / 16 * 16, 16, 16);
 
         GL11.glColor3f(1f, 1f, 1f);
-        super.drawGuiContainerForegroundLayer(par1, par2);
+        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
     }
 
     @Override

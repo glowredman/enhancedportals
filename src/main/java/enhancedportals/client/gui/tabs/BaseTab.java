@@ -260,15 +260,14 @@ public abstract class BaseTab {
 
     }
 
-    void drawTexturedModalRect(int par1, int par2, int par3, int par4, int par5, int par6) {
-        float f = 0.00390625F;
-        float f1 = 0.00390625F;
+    void drawTexturedModalRect(int x, int y, int u, int v, int width, int height) {
+        float f = 0.00390625F; // 1/256
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(par1 + 0, par2 + par6, 0, (par3 + 0) * f, (par4 + par6) * f1);
-        tessellator.addVertexWithUV(par1 + par5, par2 + par6, 0, (par3 + par5) * f, (par4 + par6) * f1);
-        tessellator.addVertexWithUV(par1 + par5, par2 + 0, 0, (par3 + par5) * f, (par4 + 0) * f1);
-        tessellator.addVertexWithUV(par1 + 0, par2 + 0, 0, (par3 + 0) * f, (par4 + 0) * f1);
+        tessellator.addVertexWithUV(x,         y + height, 0,  u          * f, (v + height) * f);
+        tessellator.addVertexWithUV(x + width, y + height, 0, (u + width) * f, (v + height) * f);
+        tessellator.addVertexWithUV(x + width, y,          0, (u + width) * f,  v           * f);
+        tessellator.addVertexWithUV(x,         y,          0,  u          * f,  v           * f);
         tessellator.draw();
     }
 

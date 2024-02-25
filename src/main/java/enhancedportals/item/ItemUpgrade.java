@@ -57,16 +57,15 @@ public class ItemUpgrade extends Item {
         return baseIcon;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < overlayIcons.length; i++)
-            par3List.add(new ItemStack(par1, 1, i));
+            list.add(new ItemStack(item, 1, i));
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack par1ItemStack) {
-        return super.getUnlocalizedName() + "." + ItemFrame.unlocalizedName[par1ItemStack.getItemDamage() + 2];
+    public String getUnlocalizedName(ItemStack stack) {
+        return super.getUnlocalizedName() + "." + ItemFrame.unlocalizedName[stack.getItemDamage() + 2];
     }
 
     @Override

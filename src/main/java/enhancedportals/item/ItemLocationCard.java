@@ -53,9 +53,8 @@ public class ItemLocationCard extends Item {
         setHasSubtypes(true);
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advancedTooltips) {
         DimensionCoordinates w = getDBSLocation(stack);
 
         if (w != null)
@@ -63,7 +62,7 @@ public class ItemLocationCard extends Item {
     }
 
     @Override
-    public IIcon getIconFromDamage(int par1) {
+    public IIcon getIconFromDamage(int meta) {
         return texture;
     }
 
