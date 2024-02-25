@@ -29,6 +29,7 @@ import enhancedportals.network.CommonProxy;
 import enhancedportals.network.GuiHandler;
 import enhancedportals.network.PacketPipeline;
 import enhancedportals.portal.NetworkManager;
+import enhancedportals.utility.GeneralUtils;
 
 @Mod(name = EnhancedPortals.MOD_NAME, modid = EnhancedPortals.MOD_ID, version = EnhancedPortals.MOD_VERSION, dependencies = EnhancedPortals.MOD_DEPENDENCIES)
 public class EnhancedPortals {
@@ -85,6 +86,7 @@ public class EnhancedPortals {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        GeneralUtils.checkAPIs();
         proxy.setupConfiguration(new File(event.getSuggestedConfigurationFile().getParentFile(), MOD_NAME + File.separator + "config.cfg"));
         packetPipeline.initalise();
         proxy.registerBlocks();

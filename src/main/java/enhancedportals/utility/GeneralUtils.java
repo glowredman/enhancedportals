@@ -12,11 +12,26 @@ import net.minecraftforge.common.util.ForgeDirection;
 import buildcraft.api.tools.IToolWrench;
 import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.ModAPIManager;
 import cpw.mods.fml.relauncher.Side;
+import enhancedportals.client.MissingAPIException;
 import enhancedportals.item.ItemGlasses;
 import enhancedportals.network.CommonProxy;
 
 public class GeneralUtils {
+
+    private static boolean bcToolsApiPresent;
+    
+    public static void checkAPIs() {
+        if (!ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy")) {
+            if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                throw new MissingAPIException("CoFHAPI|energy is not present!", "", "Please install any mod containing this API (for example CoFHLib or CoFHCore).");
+            else
+                throw new IllegalStateException("CoFHAPI|energy is not present! Please install any mod containing this API (for example CoFHLib or CoFHCore).");
+        }
+        bcToolsApiPresent = ModAPIManager.INSTANCE.hasAPI("BuildCraftAPI|tools");
+    }
+
     public static double getPowerMultiplier() {
         return hasEnergyCost() ? CommonProxy.CONFIG_POWER_MULTIPLIER : 0;
     }
@@ -42,7 +57,7 @@ public class GeneralUtils {
     }
 
     public static boolean isWrench(ItemStack i) {
-        return i != null && i.getItem() instanceof IToolWrench;
+        return i != null && bcToolsApiPresent && i.getItem() instanceof IToolWrench;
     }
 
     public static ChunkCoordinates loadChunkCoord(NBTTagCompound tagCompound, String string) {
