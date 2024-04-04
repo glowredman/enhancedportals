@@ -3,34 +3,22 @@ package enhancedportals.utility;
 import java.util.ArrayList;
 import java.util.List;
 
+import buildcraft.api.tools.IToolWrench;
+import cofh.api.energy.IEnergyContainerItem;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import enhancedportals.item.ItemGlasses;
+import enhancedportals.network.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraftforge.common.util.ForgeDirection;
-import buildcraft.api.tools.IToolWrench;
-import cofh.api.energy.IEnergyContainerItem;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.ModAPIManager;
-import cpw.mods.fml.relauncher.Side;
-import enhancedportals.client.MissingAPIException;
-import enhancedportals.item.ItemGlasses;
-import enhancedportals.network.CommonProxy;
 
 public class GeneralUtils {
 
-    private static boolean bcToolsApiPresent;
-    
-    public static void checkAPIs() {
-        if (!ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy")) {
-            if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-                throw new MissingAPIException("CoFHAPI|energy is not present!", "", "Please install any mod containing this API (for example CoFHLib or CoFHCore).");
-            else
-                throw new IllegalStateException("CoFHAPI|energy is not present! Please install any mod containing this API (for example CoFHLib or CoFHCore).");
-        }
-        bcToolsApiPresent = ModAPIManager.INSTANCE.hasAPI("BuildCraftAPI|tools");
-    }
+    public static boolean bcToolsApiPresent;
 
     public static double getPowerMultiplier() {
         return hasEnergyCost() ? CommonProxy.CONFIG_POWER_MULTIPLIER : 0;

@@ -22,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModAPIManager;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import enhancedportals.EnhancedPortals;
@@ -64,6 +65,7 @@ import enhancedportals.tile.TileTransferEnergy;
 import enhancedportals.tile.TileTransferFluid;
 import enhancedportals.tile.TileTransferItem;
 import enhancedportals.utility.CreativeTabEP3;
+import enhancedportals.utility.GeneralUtils;
 
 public class CommonProxy {
 
@@ -166,6 +168,10 @@ public class CommonProxy {
         GameRegistry.registerTileEntity(TileTransferEnergy.class, "epTE");
         GameRegistry.registerTileEntity(TileTransferFluid.class, "epTF");
         GameRegistry.registerTileEntity(TileTransferItem.class, "epTI");
+    }
+    
+    public void checkAPIs() {
+        GeneralUtils.bcToolsApiPresent = ModAPIManager.INSTANCE.hasAPI("BuildCraftAPI|tools");
     }
 
     public void setupConfiguration(File c) {

@@ -18,6 +18,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.DimensionManager;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.ModAPIManager;
+import cpw.mods.fml.relauncher.Side;
 import enhancedportals.EnhancedPortals;
 import enhancedportals.block.BlockDecorBorderedQuartz;
 import enhancedportals.block.BlockDecorEnderInfusedMetal;
@@ -25,6 +28,7 @@ import enhancedportals.block.BlockFrame;
 import enhancedportals.block.BlockPortal;
 import enhancedportals.block.BlockStabilizer;
 import enhancedportals.block.BlockStabilizerEmpty;
+import enhancedportals.client.MissingAPIException;
 import enhancedportals.client.PortalRenderer;
 import enhancedportals.item.ItemBlankPortalModule;
 import enhancedportals.item.ItemBlankUpgrade;
@@ -72,6 +76,17 @@ public class ClientProxy extends CommonProxy {
 
     static HashMap<String, ItemStack[]> craftingRecipes = new HashMap<String, ItemStack[]>();
     public static HashMap<ChunkCoordinates, ArrayList<ChunkCoordinates>> waitingForController = new HashMap<ChunkCoordinates, ArrayList<ChunkCoordinates>>();
+    
+    @Override
+    public void checkAPIs() {
+        if (!ModAPIManager.INSTANCE.hasAPI("CoFHAPI|energy")) {
+            if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                throw new MissingAPIException("CoFHAPI|energy is not present!", "", "Please install any mod containing this API (for example CoFHLib or CoFHCore).");
+            else
+                throw new IllegalStateException("CoFHAPI|energy is not present! Please install any mod containing this API (for example CoFHLib or CoFHCore).");
+        }
+        super.checkAPIs();
+    }
 
     @Override
     public void waitForController(ChunkCoordinates controller, ChunkCoordinates frame) {

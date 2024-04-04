@@ -30,9 +30,8 @@ import enhancedportals.network.GuiHandler;
 import enhancedportals.network.LogOnHandler;
 import enhancedportals.network.PacketPipeline;
 import enhancedportals.portal.NetworkManager;
-import enhancedportals.utility.GeneralUtils;
 
-@Mod(name = EnhancedPortals.MOD_NAME, modid = EnhancedPortals.MOD_ID, version = EnhancedPortals.MOD_VERSION, dependencies = EnhancedPortals.MOD_DEPENDENCIES)
+@Mod(acceptableRemoteVersions = "[3.0.14],[" + EnhancedPortals.MOD_VERSION + "]", name = EnhancedPortals.MOD_NAME, modid = EnhancedPortals.MOD_ID, version = EnhancedPortals.MOD_VERSION, dependencies = EnhancedPortals.MOD_DEPENDENCIES)
 public class EnhancedPortals {
     public static final String MOD_NAME = "EnhancedPortals",
                                MOD_ID = "enhancedportals",
@@ -87,7 +86,7 @@ public class EnhancedPortals {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        GeneralUtils.checkAPIs();
+        proxy.checkAPIs();
         proxy.setupConfiguration(new File(event.getSuggestedConfigurationFile().getParentFile(), MOD_NAME + File.separator + "config.cfg"));
         packetPipeline.initalise();
         proxy.registerBlocks();
